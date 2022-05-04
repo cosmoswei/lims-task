@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    config:
+      name: lims-task-config
+      uri: http://localhost:3344
+      profile: prod
+      label: master
+
+
+
+elasticjob:
+  jobs:
+    auto-release-classroom-job:
+      elastic-job-class: com.wei.job.AutoReleaseSeatJob
+      cron: 0/5 * * * * ?
+      description: "自动释放座位定时任务"
+      sharding-total-count: 1
+      sharding-item-parameters: 1=a
+  reg-center:
+    server-lists: 127.0.0.1:2181
+    namespace: local-zk
+    max-sleep-time-milliseconds: 8000
